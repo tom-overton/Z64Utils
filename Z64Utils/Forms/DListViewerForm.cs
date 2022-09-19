@@ -130,6 +130,14 @@ namespace Z64.Forms
         private void NewRender(object sender = null, EventArgs e = null)
         {
             _renderer.ClearErrors();
+            Random rand = new Random();
+
+            byte random1 = (byte)(rand.Next() & 0xF);
+            byte random2 = (byte)(rand.Next() & 0xF);
+            byte random3 = (byte)(rand.Next() & 0xF);
+            byte random4 = (byte)(rand.Next() & 0xF);
+
+            _renderer.Memory.Segments[8] = F3DZEX.Memory.Segment.FromFill("Test Tex Scroll", new byte[] { 0xE8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF2, 0x00, random1, random2, 0x00, 0x00, random3, random4, 0xDF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 });
 
             toolStripStatusErrorLabel.Text = "";
 
